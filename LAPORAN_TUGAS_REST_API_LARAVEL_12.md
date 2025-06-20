@@ -15,8 +15,9 @@
 3. [Desain Sistem](#desain-sistem)
 4. [Implementasi](#implementasi)
 5. [Pengujian](#pengujian)
-6. [Dokumentasi API](#dokumentasi-api)
-7. [Kesimpulan](#kesimpulan)
+6. [Screenshot dan Demo](#screenshot-dan-demo)
+7. [Dokumentasi API](#dokumentasi-api)
+8. [Kesimpulan](#kesimpulan)
 
 ---
 
@@ -609,20 +610,73 @@ Route::middleware('auth:sanctum')->group(function () {
 
 ---
 
-## 6. DOKUMENTASI API
+## 6. SCREENSHOT DAN DEMO
 
-### 6.1 Base URL
+### 6.1 Screenshot Postman Collection
+![Postman Collection](screenshots/postman-collection.png)
+*Gambar 1: Postman Collection yang sudah diimport dengan semua endpoint*
+
+### 6.2 Screenshot Environment Variables
+![Environment Variables](screenshots/environment-variables.png)
+*Gambar 2: Environment variables dengan base_url dan token*
+
+### 6.3 Screenshot Login Response
+![Login Response](screenshots/login-response.png)
+*Gambar 3: Response login berhasil dengan token yang diekstrak otomatis*
+
+### 6.4 Screenshot Transaction List
+![Transaction List](screenshots/transaction-list.png)
+*Gambar 4: Response list transaksi dengan pagination*
+
+### 6.5 Screenshot Console Log
+![Console Log](screenshots/console-log.png)
+*Gambar 5: Console Postman menunjukkan token berhasil diekstrak*
+
+### 6.6 Instruksi Singkat Menjalankan Postman Collection
+
+#### Langkah 1: Setup Awal
+1. **Jalankan Laravel**: `php artisan serve`
+2. **Import Collection**: File → Import → `postman_collection.json`
+3. **Import Environment**: File → Import → `postman_environment.json`
+4. **Pilih Environment**: Dropdown kanan atas → "Catatan Keuangan Local"
+
+#### Langkah 2: Testing Authentication
+1. **Register**: Jalankan request "Register" untuk membuat akun baru
+2. **Login**: Jalankan request "Login" dengan kredensial yang valid
+3. **Cek Token**: Buka Console (View → Show Postman Console) untuk melihat log ekstraksi token
+
+#### Langkah 3: Testing API
+1. **Profile**: Jalankan "Profile (GET)" untuk melihat data user
+2. **Transactions**: Jalankan "List Transactions" untuk melihat transaksi
+3. **Create Transaction**: Jalankan "Create Transaction" untuk membuat transaksi baru
+4. **Dashboard**: Jalankan endpoint dashboard untuk melihat statistik
+
+#### Langkah 4: Verifikasi
+- Token otomatis terisi di environment setelah login/register
+- Semua request yang butuh autentikasi menggunakan Bearer Token
+- Response dalam format JSON dengan struktur yang konsisten
+
+#### Troubleshooting Cepat
+- **Token Error**: Jalankan ulang Login/Register
+- **Connection Error**: Pastikan `php artisan serve` berjalan
+- **404 Error**: Cek apakah route API sudah terdaftar dengan `php artisan route:list --path=api`
+
+---
+
+## 7. DOKUMENTASI API
+
+### 7.1 Base URL
 ```
 http://127.0.0.1:8000/api
 ```
 
-### 6.2 Authentication
+### 7.2 Authentication
 Semua endpoint yang memerlukan autentikasi menggunakan Bearer Token:
 ```
 Authorization: Bearer {token}
 ```
 
-### 6.3 Response Format
+### 7.3 Response Format
 ```json
 {
     "success": true,
@@ -633,7 +687,7 @@ Authorization: Bearer {token}
 }
 ```
 
-### 6.4 Error Response Format
+### 7.4 Error Response Format
 ```json
 {
     "success": false,
@@ -644,7 +698,7 @@ Authorization: Bearer {token}
 }
 ```
 
-### 6.5 Endpoint Documentation
+### 7.5 Endpoint Documentation
 
 #### Authentication Endpoints
 
@@ -761,7 +815,7 @@ Authorization: Bearer {token}
 }
 ```
 
-### 6.6 Postman Collection
+### 7.6 Postman Collection
 File `postman_collection.json` berisi semua endpoint dengan:
 - Pre-configured headers
 - Sample request bodies
@@ -770,9 +824,9 @@ File `postman_collection.json` berisi semua endpoint dengan:
 
 ---
 
-## 7. KESIMPULAN
+## 8. KESIMPULAN
 
-### 7.1 Pencapaian
+### 8.1 Pencapaian
 1. ✅ Berhasil membuat REST API menggunakan Laravel 12
 2. ✅ Implementasi autentikasi menggunakan Laravel Sanctum
 3. ✅ Membuat endpoint untuk manajemen transaksi keuangan
@@ -780,14 +834,14 @@ File `postman_collection.json` berisi semua endpoint dengan:
 5. ✅ Pengujian lengkap menggunakan Postman
 6. ✅ Dokumentasi API yang komprehensif
 
-### 7.2 Fitur yang Diimplementasikan
+### 8.2 Fitur yang Diimplementasikan
 - **Authentication**: Register, Login, Logout, Profile management
 - **Transaction Management**: CRUD operations untuk transaksi
 - **Dashboard**: Overview, summary, dan insights
 - **Security**: Bearer token authentication, input validation
 - **Error Handling**: Proper error responses dan validation
 
-### 7.3 Kendala dan Solusi
+### 8.3 Kendala dan Solusi
 1. **Kendala**: Route API tidak terdeteksi
    **Solusi**: Membuat `RouteServiceProvider.php` untuk Laravel 12
 
@@ -797,14 +851,14 @@ File `postman_collection.json` berisi semua endpoint dengan:
 3. **Kendala**: Token tidak otomatis terisi di Postman
    **Solusi**: Menambahkan script otomatis ekstraksi token
 
-### 7.4 Pembelajaran
+### 8.4 Pembelajaran
 1. **Laravel 12**: Perubahan struktur provider dan routing
 2. **Laravel Sanctum**: Implementasi token-based authentication
 3. **REST API Design**: Best practices untuk API design
 4. **Postman Testing**: Advanced testing dengan scripts dan environment
 5. **API Documentation**: Pentingnya dokumentasi yang jelas
 
-### 7.5 Saran Pengembangan
+### 8.5 Saran Pengembangan
 1. **Pagination**: Implementasi pagination yang lebih advanced
 2. **Caching**: Menambahkan caching untuk performa
 3. **Rate Limiting**: Implementasi rate limiting untuk keamanan
