@@ -613,24 +613,20 @@ Route::middleware('auth:sanctum')->group(function () {
 ## 6. SCREENSHOT DAN DEMO
 
 ### 6.1 Screenshot Postman Collection
-![Postman Collection](screenshots/postman-collection.png)
+![image](https://github.com/user-attachments/assets/eaceda52-d76d-48d2-8391-1bc58b50cc7a)
 *Gambar 1: Postman Collection yang sudah diimport dengan semua endpoint*
 
 ### 6.2 Screenshot Environment Variables
-![Environment Variables](screenshots/environment-variables.png)
+![image](https://github.com/user-attachments/assets/981fd258-c4e7-43f7-98cb-be027287b462)
 *Gambar 2: Environment variables dengan base_url dan token*
 
 ### 6.3 Screenshot Login Response
-![Login Response](screenshots/login-response.png)
+![image](https://github.com/user-attachments/assets/eee2bf68-15ac-4205-9e91-416c08297ca8)
 *Gambar 3: Response login berhasil dengan token yang diekstrak otomatis*
 
 ### 6.4 Screenshot Transaction List
-![Transaction List](screenshots/transaction-list.png)
+![image](https://github.com/user-attachments/assets/c4a6b1eb-967d-4c7b-a554-0bb6c60eb638)
 *Gambar 4: Response list transaksi dengan pagination*
-
-### 6.5 Screenshot Console Log
-![Console Log](screenshots/console-log.png)
-*Gambar 5: Console Postman menunjukkan token berhasil diekstrak*
 
 ### 6.6 Instruksi Singkat Menjalankan Postman Collection
 
