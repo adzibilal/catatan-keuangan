@@ -26,12 +26,12 @@
                                 <input id="name" type="text" class="pl-10 block w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('name') border-red-500 @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus placeholder="Nama Anda">
                             </div>
 
-                            @error('name')
-                                <span class="text-red-500 text-sm mt-1" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                                @error('name')
+                                    <span class="text-red-500 text-sm mt-1" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
                         <div class="mb-6">
                             <label for="email" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Alamat Email') }}</label>
@@ -44,14 +44,14 @@
                                     </svg>
                                 </div>
                                 <input id="email" type="email" class="pl-10 block w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('email') border-red-500 @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" placeholder="nama@email.com">
-                            </div>
-
-                            @error('email')
-                                <span class="text-red-500 text-sm mt-1" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
                         </div>
+
+                                @error('email')
+                                    <span class="text-red-500 text-sm mt-1" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
                         <div class="mb-6">
                             <label for="password" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">{{ __('Kata Sandi') }}</label>
@@ -63,13 +63,13 @@
                                     </svg>
                                 </div>
                                 <input id="password" type="password" class="pl-10 block w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('password') border-red-500 @enderror" name="password" required autocomplete="new-password" placeholder="Min. 8 karakter">
-                            </div>
+                        </div>
 
-                            @error('password')
-                                <span class="text-red-500 text-sm mt-1" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                                @error('password')
+                                    <span class="text-red-500 text-sm mt-1" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             <p class="text-xs text-gray-500 mt-2">Minimal 8 karakter dengan kombinasi huruf dan angka</p>
                         </div>
 

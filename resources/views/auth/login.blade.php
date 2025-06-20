@@ -27,12 +27,12 @@
                                 <input id="email" type="email" class="pl-10 block w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('email') border-red-500 @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="nama@email.com">
                             </div>
 
-                            @error('email')
-                                <span class="text-red-500 text-sm mt-1" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
-                        </div>
+                                @error('email')
+                                    <span class="text-red-500 text-sm mt-1" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
                         <div class="mb-6">
                             <div class="flex items-center justify-between mb-2">
@@ -42,7 +42,7 @@
                                         {{ __('Lupa Kata Sandi?') }}
                                     </a>
                                 @endif
-                            </div>
+                        </div>
 
                             <div class="relative">
                                 <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -53,11 +53,11 @@
                                 <input id="password" type="password" class="pl-10 block w-full border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm @error('password') border-red-500 @enderror" name="password" required autocomplete="current-password" placeholder="••••••••">
                             </div>
 
-                            @error('password')
-                                <span class="text-red-500 text-sm mt-1" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                                @error('password')
+                                    <span class="text-red-500 text-sm mt-1" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                         </div>
 
                         <div class="mb-6">
