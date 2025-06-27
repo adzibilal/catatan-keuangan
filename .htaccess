@@ -1,0 +1,76 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Redirect all requests to public folder
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+</IfModule>
+
+# Prevent access to sensitive files and directories
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "\.(env|log|sql)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+<FilesMatch "(composer\.(json|lock)|package(-lock)?\.json|yarn\.lock)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevent access to sensitive directories
+<DirectoryMatch "^/.git/">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch>
+
+<DirectoryMatch "^/vendor/">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch>
+
+<DirectoryMatch "^/storage/">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch>
+
+<DirectoryMatch "^/bootstrap/">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch>
+
+<DirectoryMatch "^/config/">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch>
+
+<DirectoryMatch "^/database/">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch>
+
+<DirectoryMatch "^/resources/">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch>
+
+<DirectoryMatch "^/routes/">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch>
+
+<DirectoryMatch "^/app/">
+    Order allow,deny
+    Deny from all
+</DirectoryMatch> 

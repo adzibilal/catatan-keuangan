@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Disallow access to sensitive directories
+Disallow: /vendor/
+Disallow: /storage/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /database/
+Disallow: /resources/
+Disallow: /routes/
+Disallow: /app/
+Disallow: /.git/
+Disallow: /node_modules/
+
+# Sitemap
+Sitemap: https://lightcyan-tarsier-425131.hostingersite.com/sitemap.xml 
