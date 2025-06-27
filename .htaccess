@@ -1,10 +1,12 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-    
-    # Redirect all requests to public folder
-    RewriteCond %{REQUEST_URI} !^/public/
-    RewriteRule ^(.*)$ public/$1 [L]
-</IfModule>
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ public/$1 [L]
+
+# Basic security - prevent access to sensitive files
+<FilesMatch "\.(env|log|sql)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
 
 # Security headers
 <IfModule mod_headers.c>
@@ -15,11 +17,6 @@
 
 # Prevent access to sensitive files and directories
 <FilesMatch "^\.">
-    Order allow,deny
-    Deny from all
-</FilesMatch>
-
-<FilesMatch "\.(env|log|sql)$">
     Order allow,deny
     Deny from all
 </FilesMatch>
