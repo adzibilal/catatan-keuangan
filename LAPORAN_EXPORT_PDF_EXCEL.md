@@ -238,24 +238,16 @@ Route::middleware(['auth'])->group(function () {
 ## 5. SCREENSHOT IMPLEMENTASI
 
 ### 5.1 Halaman Utama Transaksi dengan Tombol Export
-![Halaman Transaksi dengan Tombol Export](screenshots/transactions-page-with-export-buttons.png)
+![image](https://github.com/user-attachments/assets/7a7da301-06e6-4af7-9661-9cb56631475b)
 *Gambar 1: Halaman utama transaksi yang menampilkan tombol Export PDF (merah) dan Export Excel (hijau) di samping tombol Tambah Transaksi*
 
 ### 5.2 Hasil Export PDF
-![Hasil Export PDF](screenshots/pdf-export-result.png)
+![image](https://github.com/user-attachments/assets/a494f86a-8fff-4607-8b0d-f9c3d60fca3c)
 *Gambar 2: Contoh hasil export PDF yang menampilkan laporan transaksi dengan format yang rapi dan profesional*
 
 ### 5.3 Hasil Export Excel
-![Hasil Export Excel](screenshots/excel-export-result.png)
+![image](https://github.com/user-attachments/assets/c0bb1bf1-fd87-4e6d-84d5-7e97ebcf0bf4)
 *Gambar 3: Contoh hasil export Excel yang menampilkan data transaksi dalam format spreadsheet dengan header yang berwarna*
-
-### 5.4 Struktur File yang Diunduh
-![Struktur File Export](screenshots/export-files-structure.png)
-*Gambar 4: Struktur file yang diunduh dengan nama file yang sesuai format tanggal*
-
-### 5.5 Responsivitas Tombol Export
-![Responsivitas Tombol Export](screenshots/export-buttons-responsive.png)
-*Gambar 5: Tampilan tombol export yang responsif pada berbagai ukuran layar*
 
 ---
 
