@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TransactionController extends Controller
 {
@@ -115,5 +116,93 @@ class TransactionController extends Controller
 
         return redirect()->route('transactions.index')
             ->with('success', 'Transaksi berhasil dihapus');
+    }
+
+    /**
+     * Export transactions to PDF
+     */
+    public function exportPdf()
+    {
+        $transactions = Transaction::where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        $totalIncome = Transaction::where('user_id', Auth::id())
+            ->where('type', 'income')
+            ->sum('amount');
+            
+        $totalExpense = Transaction::where('user_id', Auth::id())
+            ->where('type', 'expense')
+            ->sum('amount');
+            
+        $balance = $totalIncome - $totalExpense;
+
+        $pdf = PDF::loadView('transactions.export-pdf', compact('transactions', 'totalIncome', 'totalExpense', 'balance'));
+        
+        return $pdf->download('laporan-transaksi-' . date('Y-m-d') . '.pdf');
+    }
+
+    /**
+     * Export transactions to Excel (CSV format)
+     */
+    public function exportExcel()
+    {
+        $transactions = Transaction::where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->get();
+        
+        $totalIncome = Transaction::where('user_id', Auth::id())
+            ->where('type', 'income')
+            ->sum('amount');
+            
+        $totalExpense = Transaction::where('user_id', Auth::id())
+            ->where('type', 'expense')
+            ->sum('amount');
+            
+        $balance = $totalIncome - $totalExpense;
+
+        $filename = 'laporan-transaksi-' . date('Y-m-d') . '.csv';
+        
+        $headers = [
+            'Content-Type' => 'text/csv; charset=UTF-8',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ];
+
+        $callback = function() use ($transactions, $totalIncome, $totalExpense, $balance) {
+            $file = fopen('php://output', 'w');
+            
+            // Add BOM for UTF-8
+            fprintf($file, chr(0xEF).chr(0xBB).chr(0xBF));
+            
+            // Header
+            fputcsv($file, ['LAPORAN TRANSAKSI KEUANGAN']);
+            fputcsv($file, ['Tanggal Export: ' . date('d/m/Y H:i:s')]);
+            fputcsv($file, ['']);
+            
+            // Summary
+            fputcsv($file, ['Total Pemasukan:', 'Rp ' . number_format($totalIncome, 0, ',', '.')]);
+            fputcsv($file, ['Total Pengeluaran:', 'Rp ' . number_format($totalExpense, 0, ',', '.')]);
+            fputcsv($file, ['Saldo:', 'Rp ' . number_format($balance, 0, ',', '.')]);
+            fputcsv($file, ['']);
+            
+            // Table header
+            fputcsv($file, ['No', 'Tanggal', 'Deskripsi', 'Jumlah', 'Tipe']);
+            
+            // Data
+            $no = 1;
+            foreach ($transactions as $transaction) {
+                fputcsv($file, [
+                    $no++,
+                    $transaction->created_at->format('d/m/Y'),
+                    $transaction->description,
+                    'Rp ' . number_format($transaction->amount, 0, ',', '.'),
+                    $transaction->type === 'income' ? 'Pemasukan' : 'Pengeluaran'
+                ]);
+            }
+            
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 }
